@@ -12,6 +12,11 @@ class DragonSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-    }
+        'type' => 'Night Fury',
+        'color' => 'Black',
+        'personality' => 'Intelligent and Loyal',
+        'image' => 'klghrghregoher',
+        'created_at' => '2025-10-01 10:00:00',
+        'updated_at' => '2025-10-01 11:00:00'
+    },
 }
