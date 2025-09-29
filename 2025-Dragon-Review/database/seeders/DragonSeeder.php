@@ -15,7 +15,7 @@ class DragonSeeder extends Seeder
         'type' => 'Night Fury',
         'color' => 'Black',
         'personality' => 'Intelligent and Loyal',
-        'image' => 'klghrghregoher',
+        'image' => 'nightFury.jpg',
         'created_at' => '2025-10-01 10:00:00',
         'updated_at' => '2025-10-01 11:00:00'
     },
