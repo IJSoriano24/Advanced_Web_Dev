@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('dragons', DragonController::class);
 });
 
+//This route will call the show() method in the DragonController
+
     Route::get('/dragons', [DragonController::class, 'index'])->name('dragons.index');
     Route::get('/dragons/create', [DragonController::class, 'create'])->name('dragons.create');
     Route::get('/dragons/{dragon}', [DragonController::class, 'show'])->name('dragons.show');
@@ -28,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dragons/{dragon}/edit', [DragonController::class, 'edit'])->name('dragons.edit');
     Route::put('/dragons/{dragon}', [DragonController::class, 'update'])->name('dragons.update');
     Route::delete('/dragons/{dragon}', [DragonController::class, 'destroy'])->name('dragons.destroy');
+
 
 
 require __DIR__.'/auth.php';

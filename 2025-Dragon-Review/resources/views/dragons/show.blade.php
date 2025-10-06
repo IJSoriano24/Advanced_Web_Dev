@@ -13,7 +13,7 @@
                         <x-dragon-details
                             :type="$dragon->type"
                             :color="$dragon->color"
-                            :personality="$dragon->personalitiy"
+                            :personality="$dragon->personality"
                             :image="$dragon->image"
                         />
                 </div>

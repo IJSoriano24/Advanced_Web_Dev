@@ -13,9 +13,9 @@
                     <h3 class="font-semibold text-lg mb-4">List of Dragons</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($dragons as $dragon)
-                        <a href="{{ route('dragons.show', $dragon) }}>
+                        <a href="{{ route('dragons.show', $dragon) }}">
                             <x-dragon-card
-                                :title="$dragon->title"
+                                :type="$dragon->type"
                                 :image="$dragon->image"
                             />
                         </a>
