@@ -12,7 +12,8 @@ class DragonController extends Controller
      */
     public function index()
     {
-        //
+        $dragons = Dragon::all(); //fetch all books
+        return view('dragons.index', compact('dragons')); //return view with books
     }
 
     /**
@@ -36,7 +37,7 @@ class DragonController extends Controller
      */
     public function show(Dragon $dragon)
     {
-        //
+        return view('dragons.show')->with('dragon', $dragon);
     }
 
     /**
