@@ -47,7 +47,7 @@ class DragonSeeder extends Seeder{
             'type' => 'Gronckle',
             'color' => 'Brown with orange and yellow spots',
             'personality' => 'Friendly and affectionate',
-            'image' => 'gronckle.jpg',
+            'image' => 'gronkle.jpg',
             // 'created_at' => '2025-10-01 10:00:00',
             // 'updated_at' => '2025-10-01 11:00:00'
         ],

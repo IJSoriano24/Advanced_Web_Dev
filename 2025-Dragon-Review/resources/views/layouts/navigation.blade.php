@@ -18,6 +18,10 @@
                     <x-nav-link :href="route('dragons.index')" :active="request()->routeIs('dragons.index')">
                         {{ __('View All Dragons') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('dragons.create')" :active="request()->routeIs('dragons.create')">
+                        {{ __('Create a Dragon') }}
+                    </x-nav-link>
                 </div>
             </div>
 

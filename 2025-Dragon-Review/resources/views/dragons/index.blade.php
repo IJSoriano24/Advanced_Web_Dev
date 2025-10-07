@@ -26,3 +26,9 @@
         </div>
     </div>
 </x-app-layout>
+
+<!--success alert-->
+
+<x-alert-success>
+    {{ session('success') }}
+</x-alert-success>

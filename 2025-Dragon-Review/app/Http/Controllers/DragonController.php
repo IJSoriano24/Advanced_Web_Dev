@@ -21,7 +21,7 @@ class DragonController extends Controller
      */
     public function create()
     {
-        //
+        return view('dragons.create');
     }
 
     /**
@@ -29,7 +29,33 @@ class DragonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate input
+        $request->validate([
+            'type' => 'required',
+            'color' => 'required|max:500',
+            'personality' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        //Check if the image is uploaded and handle it
+        if ($request->hasFile('image')) {
+
+            $imageName = time(). '.' .$request->image->extension();
+
+        }
+
+        //create a book record in the database
+        Dragon::create([
+            'type' => $request->type,
+            'color' => $request->color, //fuxed type from 'descriptn'
+            'personality'=> $request->personality,
+            'image' => $imageName, //store the image URL in the DB
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        //Redirect to the index page with a success message
+        return to_route('dragons.index')->with('success', 'Dragon created successfully');
     }
 
     /**

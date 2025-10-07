@@ -14,11 +14,11 @@
         </div>
 
         <!-- Publication Year -->
-        <h2 class="text-gray-500 text-sm italic mb-4" style="font-size: 1rem;"> Published: {{ $color }}</h2> 
+        <h2 class="text-gray-500 text-sm italic mb-4" style="font-size: 1rem;"> Color {{ $color }}</h2> 
         <!-- Emphasizing year with italics -->
 
         <!-- Dragon Description -->
-        <h3 class="text-gray-800 font-semibold mb-2" style="font-size: 2rem;">[Description]</h3> 
+        <h3 class="text-gray-800 font-semibold mb-2" style="font-size: 2rem;">Description</h3> 
         <!-- Subheading for description -->
         <p class="text-gray-700 text-sm italic mb-4" style="font-size: 1rem;">{{$personality}}</p>
         <!-- Text is spaced out for readability -->
