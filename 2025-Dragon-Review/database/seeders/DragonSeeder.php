@@ -21,8 +21,8 @@ class DragonSeeder extends Seeder{
             'color' => 'Black',
             'personality' => 'Intelligent and Loyal',
             'image' => 'nightFury.jpg',
-            // 'created_at' => '2025-10-01 10:00:00',
-            // 'updated_at' => '2025-10-01 11:00:00'
+            'created_at' => '2025-10-01 10:00:00',
+            'updated_at' => '2025-10-01 11:00:00'
         ],
 
         [
@@ -30,8 +30,8 @@ class DragonSeeder extends Seeder{
             'color' => 'Blue',
             'personality' => 'Alert and agile',
             'image' => 'deadlyNadder.jpg',
-            // 'created_at' => '2025-10-01 10:00:00',
-            // 'updated_at' => '2025-10-01 11:00:00'
+            'created_at' => '2025-10-01 10:00:00',
+            'updated_at' => '2025-10-01 11:00:00'
         ],
 
         [
@@ -39,8 +39,8 @@ class DragonSeeder extends Seeder{
             'color' => 'Red',
             'personality' => 'Agressive and stubborn ',
             'image' => 'monstrousNightmare.jpg',
-            // 'created_at' => '2025-10-01 10:00:00',
-            // 'updated_at' => '2025-10-01 11:00:00'
+            'created_at' => '2025-10-01 10:00:00',
+            'updated_at' => '2025-10-01 11:00:00'
         ],
 
         [
@@ -48,8 +48,8 @@ class DragonSeeder extends Seeder{
             'color' => 'Brown with orange and yellow spots',
             'personality' => 'Friendly and affectionate',
             'image' => 'gronkle.jpg',
-            // 'created_at' => '2025-10-01 10:00:00',
-            // 'updated_at' => '2025-10-01 11:00:00'
+            'created_at' => '2025-10-01 10:00:00',
+            'updated_at' => '2025-10-01 11:00:00'
         ],
 
         [
@@ -57,8 +57,8 @@ class DragonSeeder extends Seeder{
             'color' => 'Green with purple accents',
             'personality' => 'Cautious and mischevious',
             'image' => 'hideousZippleback.jpg',
-            // 'created_at' => '2025-10-01 10:00:00',
-            // 'updated_at' => '2025-10-01 11:00:00'
+            'created_at' => '2025-10-01 10:00:00',
+            'updated_at' => '2025-10-01 11:00:00'
         ],
         
         ]);

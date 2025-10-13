@@ -13,6 +13,8 @@ class Dragon extends Model
         'type',
         'color',
         'personality',
-        'image'
-    ]
+        'image',
+        'created_at',
+        'updated_at',
+    ];
 }

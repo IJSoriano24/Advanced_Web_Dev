@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('color');
             $table->string('personality');
             $table->string('image');
+            $table->string('created_at');
+            $table->string('updated_at');
         });
     }
 
