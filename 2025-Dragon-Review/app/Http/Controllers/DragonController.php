@@ -71,7 +71,7 @@ class DragonController extends Controller
      */
     public function edit(Dragon $dragon)
     {
-        //
+        return view('dragons.edit', compact('dragon'));
     }
 
     /**
@@ -79,7 +79,24 @@ class DragonController extends Controller
      */
     public function update(Request $request, Dragon $dragon)
     {
-        //
+        $request->validate([
+            'type' => 'required',
+            'color' => 'required|max:500',
+            'personality' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->only(['type', 'color', 'personality']);
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/dragons'), $imageName);
+            $data['image'] = $imageName;
+        }
+
+        $dragon->update($data);
+
+        return redirect()->route('dragons.index')->with('success', 'Dragon updated successfully!');
     }
 
     /**
@@ -87,6 +104,8 @@ class DragonController extends Controller
      */
     public function destroy(Dragon $dragon)
     {
-        //
+        $dragon->delete();
+
+        return redirect()->route('dragons.index')->with('success', 'Dragon deleted successfully!');
     }
 }

@@ -20,7 +20,7 @@ class DragonSeeder extends Seeder{
             'type' => 'Night Fury',
             'color' => 'Black',
             'personality' => 'Intelligent and Loyal',
-            'image' => 'nightFury.jpg',
+            'image' => 'toothless.png',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],
@@ -29,7 +29,7 @@ class DragonSeeder extends Seeder{
             'type' => 'Deadly Nadder',
             'color' => 'Blue',
             'personality' => 'Alert and agile',
-            'image' => 'deadlyNadder.jpg',
+            'image' => 'stormfly.png',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],
@@ -38,7 +38,7 @@ class DragonSeeder extends Seeder{
             'type' => 'Monstrous Nightmare',
             'color' => 'Red',
             'personality' => 'Agressive and stubborn ',
-            'image' => 'monstrousNightmare.jpg',
+            'image' => 'hookfang.png',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],
@@ -47,7 +47,7 @@ class DragonSeeder extends Seeder{
             'type' => 'Gronckle',
             'color' => 'Brown with orange and yellow spots',
             'personality' => 'Friendly and affectionate',
-            'image' => 'gronkle.jpg',
+            'image' => 'gronkle.png',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],
@@ -56,7 +56,7 @@ class DragonSeeder extends Seeder{
             'type' => 'Hideous Zippleback',
             'color' => 'Green with purple accents',
             'personality' => 'Cautious and mischevious',
-            'image' => 'hideousZippleback.jpg',
+            'image' => 'barfandbelch.png',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],

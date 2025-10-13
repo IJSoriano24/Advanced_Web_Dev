@@ -16,7 +16,7 @@
                     <x-dragon-form
                         :action="route('dragons.update', $dragon)"
                         :method="'PUT'"
-                        :book="$dragon"
+                        :dragon="$dragon"
                     />
 
                 </div>
