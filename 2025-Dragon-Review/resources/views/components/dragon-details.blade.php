@@ -1,6 +1,12 @@
  @props(['type', 'color', 'personality', 'image'])
 
  <!-- Book details component -->
+
+<a href="{{ route('dragons.index') }}"
+class="text-[#e36e32] bg-[#5B3A29] font-bold py-2 px-4 rounded border-4 border-transparent hover:border-[#4d3022]"
+    >Back</a>
+
+
     <!-- Book Title -->
   <div class="border rounded-lg sadow-md p-6 bg-white hover:shadow-lg transition duration-300 max-w-xl mx-auto">
 
@@ -23,4 +29,7 @@
         <p class="text-gray-700 text-sm italic mb-4" style="font-size: 1rem;">{{$personality}}</p>
         <!-- Text is spaced out for readability -->
 
+        
     </div>
+
+    

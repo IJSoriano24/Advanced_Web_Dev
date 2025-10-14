@@ -1,3 +1,5 @@
+
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -6,15 +8,21 @@
 
     </x-slot>
 
+    <x-alert-success>
+    {{ session('success') }}
+</x-alert-success>
+
     <div class="py-12">
         <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-[#abd4b1] overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">List of Dragons</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($dragons as $dragon)
                        
-                        <div class="border p-4 rounded-lg shadow-md">
+                        <div class="bg-[#D9C9B4]  border p-4 rounded-lg shadow-md" >
+                            
+                            
 
                         <a href="{{ route('dragons.show', $dragon) }}">
                                 <x-dragon-card
@@ -27,7 +35,7 @@
                             <div class="mt-4 flex space-x-2">
                                 {{--Edit Button route to dragons.edit and receives $dragon for editing  --}}
                                 <a href="{{ route('dragons.edit', $dragon)}}" 
-                                    class="text-gray-600 bg-orange-300 hover:bg-orange-700 font-bold py-2 px-4 rounded"> Edit
+                                    class="text-green-600 bg-green-100 font-bold py-2 px-4 rounded border border-transparent border-4 hover:border-green-600"> Edit
                                 </a>    
 
                                 {{-- Delete Button (You need a form to send DELETE requests) --}}
@@ -35,7 +43,7 @@
                                 <form action="{{ route('dragons.destroy', $dragon)}}" method="POST" onsumbit="return confirm('Are you sure you want to delete this dragon?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-gray-600 font-blade py-2 px-4 rounded"> Delete
+                                    <button type="submit" class="text-[#A8412B] bg-[#F9EDEB] font-bold py-2 px-4 rounded border-4 border-transparent hover:border-[#A8412B]"> Delete
                                     </button>
                                 </form>
                             </div>
@@ -54,6 +62,4 @@
 
 <!--success alert-->
 
-<x-alert-success>
-    {{ session('success') }}
-</x-alert-success>
+

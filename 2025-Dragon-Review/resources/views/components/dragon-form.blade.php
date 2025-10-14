@@ -75,6 +75,10 @@
             {{ isset($dragon)?'Update Dragon':'Add Dragon'}}
         </x-primary-button>
 
+                                                                                            <a href="{{ route('dragons.index') }}"
+class="text-[#e36e32]  bg-[#5B3A29] font-bold py-2 px-4 rounded border-4 border-transparent hover:border-[#4d3022]"
+    >Back</a>
+
     </div>
 
 </form>
