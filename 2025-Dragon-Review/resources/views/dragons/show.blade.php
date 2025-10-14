@@ -6,18 +6,24 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7x1 mx-auto sm;px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h3 class="font-semibold text-lg mb-4">Dragon Details</h3>
-                        <x-dragon-details
-                            :type="$dragon->type"
-                            :color="$dragon->color"
-                            :personality="$dragon->personality"
-                            :image="$dragon->image"
-                        />
-                </div>
-            </div>
+
+
+    <img src="/images/dragons/berk.jpg" 
+         class="absolute inset-0 w-full h-full object-cover blur-sm z-0" 
+         alt="Background" 
+    />
+
+    <div class="relative bg-white/60 backdrop-blur max-w-7xl mx-auto  lg:px-8 rounded-lg shadow-sm">
+        <div class="p-6 text-gray-900">
+            <h3 class="font-semibold text-lg mb-4">Dragon Details</h3>
+            <x-dragon-details
+                :type="$dragon->type"
+                :color="$dragon->color"
+                :personality="$dragon->personality"
+                :image="$dragon->image"
+            />
+        </div>
+    </div>
         </div>
     </div>
 </x-app-layout>
