@@ -6,6 +6,7 @@
         @method($method)
     @endif
 
+    <!--Type-->  
     <div class="mb-4">
         <label for="type" class="block text-sm text-gray-700">Type</label>
         <input
@@ -20,6 +21,7 @@
             @enderror
     </div>
 
+    <!--Color-->  
     <div class="mb-4">
         <label for="color" class="block text-sm text-gray-700">Color</label>
         <input
@@ -34,6 +36,8 @@
             @enderror
     </div>
 
+
+    <!--Personality-->  
     <div class="mb-4">
         <label for="personality" class="block text-sm text-gray-700">Personality</label>
         <input
@@ -48,7 +52,7 @@
             @enderror
     </div>
 
-
+<!--Choose image-->  
     <div class="mb-4">
         <label for="image" class="block text-sm font-medium text-gray-700">Dragon Cover Image</label>
         <input
@@ -70,12 +74,40 @@
         </div>
     @endisset
 
+<!--Video-->
+    <div class="mb-4">
+        <label for="video_id" class="block text-sm font-medium text-gray-700">Video</label>
+        <input
+            type="text"
+            name="video_id"
+            id="video_id"
+            value="{{ old('video_id', $dragon->video_id ?? '') }}"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            placeholder="e.g., nPmIhH775L4 or full URL"
+        />
+        @error('video_id')
+            <p class="text-sm text-red-600">{{$message}}</p>
+        @enderror
+    </div>
+
+
+    @isset($dragon->video_id)
+        <div class="mb-4">
+            <p class="text-sm text-gray-700">Current Video:</p>
+            <iframe width="320" height="240"
+                src="https://www.youtube.com/embed/{{ $dragon->video_id }}"
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+    @endisset
+
+    <!--Update button-->  
     <div>
         <x-primary-button>
             {{ isset($dragon)?'Update Dragon':'Add Dragon'}}
         </x-primary-button>
 
-                                                                                            <a href="{{ route('dragons.index') }}"
+           <!--Back button-->                                                                                 <a href="{{ route('dragons.index') }}"
 class="text-[#e36e32]  bg-[#5B3A29] font-bold py-2 px-4 rounded border-4 border-transparent hover:border-[#4d3022]"
     >Back</a>
 

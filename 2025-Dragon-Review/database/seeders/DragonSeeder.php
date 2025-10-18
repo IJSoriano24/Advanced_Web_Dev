@@ -21,6 +21,7 @@ class DragonSeeder extends Seeder{
             'color' => 'Black',
             'personality' => 'Intelligent and Loyal',
             'image' => 'toothless.png',
+            'video_id' => 'nPmIhH775L4',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],
@@ -30,6 +31,7 @@ class DragonSeeder extends Seeder{
             'color' => 'Blue',
             'personality' => 'Alert and agile',
             'image' => 'stormfly.png',
+            'video_id' => 'HliV3IwsqoA',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],
@@ -39,6 +41,7 @@ class DragonSeeder extends Seeder{
             'color' => 'Red',
             'personality' => 'Agressive and stubborn ',
             'image' => 'hookfang.png',
+            'video_id' => '4bFvBaO6K54',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],
@@ -48,6 +51,7 @@ class DragonSeeder extends Seeder{
             'color' => 'Brown with orange and yellow spots',
             'personality' => 'Friendly and affectionate',
             'image' => 'gronkle.png',
+            'video_id' => 'lb6vBhR-yL8',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],
@@ -57,6 +61,7 @@ class DragonSeeder extends Seeder{
             'color' => 'Green with purple accents',
             'personality' => 'Cautious and mischevious',
             'image' => 'barfandbelch.png',
+            'video_id' => 'vLnoJmdQNFk',
             'created_at' => '2025-10-01 10:00:00',
             'updated_at' => '2025-10-01 11:00:00'
         ],

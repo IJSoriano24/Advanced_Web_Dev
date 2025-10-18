@@ -35,6 +35,7 @@ class DragonController extends Controller
             'color' => 'required|max:500',
             'personality' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+              'video_id' => 'nullable|string|max:500',
         ]);
 
         //Check if the image is uploaded and handle it
@@ -50,6 +51,7 @@ class DragonController extends Controller
             'color' => $request->color, //fixed type from 'descriptn'
             'personality'=> $request->personality,
             'image' => $imageName, //store the image URL in the DB
+            'video_id' => $request->video_id,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -84,9 +86,10 @@ class DragonController extends Controller
             'color' => 'required|max:500',
             'personality' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'video_id' => 'nullable|string|max:255', // just a string, no file
         ]);
 
-        $data = $request->only(['type', 'color', 'personality']);
+        $data = $request->only(['type', 'color', 'personality', 'video_id']);
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
@@ -108,4 +111,7 @@ class DragonController extends Controller
 
         return redirect()->route('dragons.index')->with('success', 'Dragon deleted successfully!');
     }
+
+
+
 }
