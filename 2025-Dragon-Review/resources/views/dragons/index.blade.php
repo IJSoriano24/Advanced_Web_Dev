@@ -12,6 +12,18 @@
     {{ session('success') }}
 </x-alert-success>
 
+@if(!empty($search))
+    <p class="text-sm text-gray-600 mb-3">
+        Showing results for: <strong>{{ $search }}</strong>
+    </p>
+@endif
+
+@if($dragons->isEmpty())
+    <p class="text-gray-500">No dragons found matching "{{ $search }}".</p>
+@endif
+
+
+
     <div class="py-12">
         <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">
             <div class="bg-[#abd4b1] overflow-hidden shadow-sm sm:rounded-lg">

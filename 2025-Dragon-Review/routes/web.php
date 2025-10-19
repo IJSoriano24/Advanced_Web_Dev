@@ -32,5 +32,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/dragons/{dragon}', [DragonController::class, 'destroy'])->name('dragons.destroy');
 
 
-
 require __DIR__.'/auth.php';

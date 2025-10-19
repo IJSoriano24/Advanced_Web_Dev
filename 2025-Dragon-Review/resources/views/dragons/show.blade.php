@@ -15,21 +15,7 @@
 
 
 
-<iframe 
-    class="relative z-10 mx-auto block rounded-xl shadow-lg"
-    width="560" 
-    height="315" 
-    src="https://www.youtube.com/embed/{{$dragon->video_id}}"
-    title="{{$dragon->type}}"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-</iframe>
-
-
-
-
-    <div class="relative bg-white/60 backdrop-blur max-w-7xl mx-auto  lg:px-8 rounded-lg shadow-sm">
+    <div class="relative bg-white/60 backdrop-blur max-w-7xl mx-auto  lg:px-8 rounded-lg shadow-sm  py-5">
         <div class="p-6 text-gray-900">
             <h3 class="font-semibold text-lg mb-4">Dragon Details</h3>
             <x-dragon-details
@@ -39,7 +25,25 @@
                 :image="$dragon->image"
             />
         </div>
+
+        <iframe 
+    class="relative z-10 mx-auto block rounded-xl shadow-lg"
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/{{$dragon->video_id}}"
+    title="{{$dragon->type}}"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
     </div>
+
+
+
         </div>
+
+
+
+
     </div>
 </x-app-layout>

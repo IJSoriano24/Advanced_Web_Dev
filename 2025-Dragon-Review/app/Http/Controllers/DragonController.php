@@ -10,12 +10,22 @@ class DragonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $dragons = Dragon::all(); //fetch all books
-        return view('dragons.index', compact('dragons')); //return view with books
-    }
 
+
+public function index(Request $request)
+{
+    $search = $request->input('search');
+
+    $dragons = Dragon::query()
+        ->when($search, function ($query, $search) {
+            $query->where('type', 'like', "%{$search}%")
+                  ->orWhere('color', 'like', "%{$search}%");
+        })
+        ->get();
+
+    return view('dragons.index', compact('dragons', 'search'));
+}
+    
     /**
      * Show the form for creating a new resource.
      */
