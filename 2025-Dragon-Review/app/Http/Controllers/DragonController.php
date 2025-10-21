@@ -31,6 +31,9 @@ public function index(Request $request)
      */
     public function create()
     {
+        // if (auth()->$user()->role !== 'admin') {
+        //     return redirect()->route('dragons.index')->with('error', 'Access denied.');
+        // }
         return view('dragons.create');
     }
 

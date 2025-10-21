@@ -48,5 +48,17 @@
                 {{ __('Register') }}
             </x-primary-button>
         </div>
+
+        <!-- Dropdown box for the registration form -->
+        <div>
+            <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+            <select id="role" name="role" class="mt-1 block w-full" required>
+                <option value="user" selected>User</option>
+                <option value="admin" selected>Admin</option>
+            </select>
+            @error('role')
+                <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+            @enderror
+        </div>
     </form>
 </x-guest-layout>

@@ -25,7 +25,7 @@
                         {{ $header }}
                         
                         <!-- search bar -->
-                        <div class="sm:flex ">
+                        <div class="sm:flex  ">
                             @include('dragons.search-bar')
                         </div>
 
