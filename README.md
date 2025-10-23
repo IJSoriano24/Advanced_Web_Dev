@@ -1,31 +1,34 @@
 ## Week 1
 
-Installed Laravel for the first time which is the type of framework we will be using for this project. After the initial setup and having to install node.js, laravel and composer, we were to begin setting up the: models, view, controllers, routes and migrations. 
+This week’s focus was on setting up the Laravel environment and understanding its basic structure.
+I installed Laravel, along with Node.js and Composer, which are essential for Laravel. Composer is how Laravel manages all the PHP packages, while Node.js helps run JavaScript outside of a web browser. In relation to Laravel, it is used for CSS such as Tailwind.. After the initial setup, I began learning about Laravel’s core components — Models, Views, Controllers, Routes, and Migrations.
 
-Plenty of trouble with npm run dev. Didnt know that i had to keep it running and accidentally closed the terminal that i typed it in. Plenty of porblems with the order of trying to run the laravel application.
+One of the main challenges I faced was with npm run dev. I didn’t realize that it needed to stay running in a separate terminal window to compile assets continuously, which caused errors when trying to view the application. I also struggled with the correct order of running Laravel commands, but my friend who originally had the same problem, was able to help me fix it. 
 
-Routes particularly deal with the different http requests such as; the index, crud, show, store and edit. Controllers manage the crud routes and handle the incoming http request and return responses. Views are what the user see.
+I learned that routes handle different http requests and direct them to the controller methods. Controllers are also in charge of managing Crud.
 
 ---
 
 ## Week 2
 
-During our second week, we had to work on creating our dashboard and view all pages(also known as the index) which are located in the dashboard. When you go to “View all dragons”. using components which are helpful for repetive desgins like the cards that are displayed.
+This week, I focused on adding “View All Dragons” to the navigation bar, which serves as the main index view. I used components for reusable design elements like the dragon cards.
 
-In order to do this. The models had to be created with the correct naming conventions as well as a migration in order to create the database table.
+To store and manage data, I created models and migrations following Laravel’s naming conventions. Using the terminal command php artisan migrate, I generated the required database tables. I then created a seeder to populate the tables with sample dragon data and images. Running php artisan db:seed inserted this data into the database.
 
-**php artisan migrate** was used to run the migrations once the attributes was created. The seeder was then used to put information into the table. An images folder was also created to store the png/jpg files whcih was llocated in the dragons table. Once all the information has been finalised., **php artisan db:seed** was run in torder to seed the information into the database. he terminal followed by **php artisan serve** to run the server. 
-
-Create new book was also added to the navigation bar. When its clicked, it will bring you to a seperate form that allows you to add more dragons in my case. You can add the general; title, personality, color and image. 
+I also added a “Create New Dragon” option to the navigation bar, linking to a form where users can input details such as name, color, personality, and image. This helped me understand how Laravel handles form submissions and how data flows from a view through a controller into the database.
 
 ---
 
 ## Week 3
 
-Implemented edit, update and delete buttons. Edit and delete(destroy) are placed on the dragon.cards. This works because dragons.edit route is called in the web.php. When clicked, you are brought to a seperate form, similar to create, where you can edit the exisitng information. There was some trouble with the images where you had to manually add the same image that was displayed on the card rather then it already being displayed in the edit form. 
+During week 3, I implemented the Edit, Update, and Delete (Destroy) features. The buttons are located on each dragon card. The dragons.edit route directed users to an edit form pre-filled with existing data, allowing modifications before updating the record.
+
+One difficulty I encountered was with the image upload field. the form didn’t automatically display the existing image, so I had to re-upload it each time. In order to fix that, the image had to be nullable so the controller only replaces the image if a new one is uploaded. This is thanks to $data['image'] not being set so the image that was originally in the database remains unchanged. 
+
+Overall, this week helped me understand how CRUD operations interact between routes, controllers, and views.
 
 ---
 
 ## Week 4
 
-finalise ca, write script, create video.
+In the final week, I focused on finishing the CA, writing a script to explain the project and keeping myself on track while recording my video demonstration of the website. It helped me give an overall summary of everything ive done in the last four weeks and what I would like to improve in the 2nd part of the CA.
