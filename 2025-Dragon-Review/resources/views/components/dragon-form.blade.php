@@ -23,7 +23,7 @@
 
     <!--Color-->  
     <div class="mb-4">
-        <label for="color" class="block text-sm text-gray-700">Color</label>
+        <label for="color" class="block text-sm text-gray-700">Color:</label>
         <input
             type="text"
             name="color"
@@ -81,12 +81,12 @@
             type="text"
             name="video_id"
             id="video_id"
-            value="{{ old('video_id', $dragon->video_id ?? '') }}"
+            value="{{ old('video_id', $dragon->video_id ?? '') }}" {{-- keeps previous input or model value --}}
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="e.g., nPmIhH775L4 or full URL"
         />
         @error('video_id')
-            <p class="text-sm text-red-600">{{$message}}</p>
+            <p class="text-sm text-red-600">{{$message}}</p> {{-- displays validation error for video_id --}}
         @enderror
     </div>
 
@@ -95,7 +95,7 @@
         <div class="mb-4">
             <p class="text-sm text-gray-700">Current Video:</p>
             <iframe width="320" height="240"
-                src="https://www.youtube.com/embed/{{ $dragon->video_id }}"
+                src="https://www.youtube.com/embed/{{ $dragon->video_id }}" {{-- embeds using saved YouTube ID --}}
                 frameborder="0" allowfullscreen>
             </iframe>
         </div>

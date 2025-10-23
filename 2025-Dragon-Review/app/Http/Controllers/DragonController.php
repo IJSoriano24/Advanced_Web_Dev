@@ -12,13 +12,13 @@ class DragonController extends Controller
      */
 
 
-public function index(Request $request)
+public function index(Request $request) //this handles search functionality
 {
     $search = $request->input('search');
 
     $dragons = Dragon::query()
         ->when($search, function ($query, $search) {
-            $query->where('type', 'like', "%{$search}%")
+            $query->where('type', 'like', "%{$search}%") //reads the query parameter 'search' from the request. Adds a SQL WHERE clause to filter dragons by type or color.
                   ->orWhere('color', 'like', "%{$search}%");
         })
         ->get();
@@ -102,7 +102,8 @@ public function index(Request $request)
             'video_id' => 'nullable|string|max:255', // just a string, no file
         ]);
 
-        $data = $request->only(['type', 'color', 'personality', 'video_id']);
+
+        $data = $request->only(['type', 'color', 'personality', 'video_id']); //image is not included here. when $dragon->update($data) is called, image will not be updated and is left as is. This is to avoid having to always upload an image when updating other fields.
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
