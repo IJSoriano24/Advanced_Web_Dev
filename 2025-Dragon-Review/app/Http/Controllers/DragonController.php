@@ -15,20 +15,23 @@ class DragonController extends Controller
 public function index(Request $request) //this handles search functionality
 {
     $search = $request->input('search');
-
+    //Fetch dragons from the database, optionally filtering by search query
     $dragons = Dragon::query()
         ->when($search, function ($query, $search) {
             $query->where('type', 'like', "%{$search}%") //reads the query parameter 'search' from the request. Adds a SQL WHERE clause to filter dragons by type or color.
                   ->orWhere('color', 'like', "%{$search}%");
         })
         ->get();
-
+        //retrieves the filtered list of dragons from the database.
     return view('dragons.index', compact('dragons', 'search'));
 }
     
     /**
      * Show the form for creating a new resource.
      */
+
+    // displays the form to create a new dragon.
+    //admin access check commented out for now.
     public function create()
     {
         // if (auth()->$user()->role !== 'admin') {
@@ -40,6 +43,8 @@ public function index(Request $request) //this handles search functionality
     /**
      * Store a newly created resource in storage.
      */
+
+    // handles the form submission for creating a new dragon and creates a new dragon record in the database.
     public function store(Request $request)
     {
         //Validate input
@@ -51,7 +56,7 @@ public function index(Request $request) //this handles search functionality
               'video_id' => 'nullable|string|max:500',
         ]);
 
-        //Check if the image is uploaded and handle it
+        //Check if the image is uploaded and handles it
         if ($request->hasFile('image')) {
 
             $imageName = time(). '.' .$request->image->extension();
@@ -76,6 +81,7 @@ public function index(Request $request) //this handles search functionality
     /**
      * Display the specified resource.
      */
+    // shows the details of a specific dragon.
     public function show(Dragon $dragon)
     {
         return view('dragons.show')->with('dragon', $dragon);
@@ -84,6 +90,8 @@ public function index(Request $request) //this handles search functionality
     /**
      * Show the form for editing the specified resource.
      */
+
+    // displays the form to edit an existing dragon.
     public function edit(Dragon $dragon)
     {
         return view('dragons.edit', compact('dragon'));
@@ -92,6 +100,8 @@ public function index(Request $request) //this handles search functionality
     /**
      * Update the specified resource in storage.
      */
+
+    // handles the form submission for updating an existing dragon and updates the dragon record in the database. optionally handles image uploads.
     public function update(Request $request, Dragon $dragon)
     {
         $request->validate([
@@ -102,7 +112,7 @@ public function index(Request $request) //this handles search functionality
             'video_id' => 'nullable|string|max:255', // just a string, no file
         ]);
 
-
+// prepare data for update. image is exluded to avoid overwriting it if no new image is uploaded.
         $data = $request->only(['type', 'color', 'personality', 'video_id']); //image is not included here. when $dragon->update($data) is called, image will not be updated and is left as is. This is to avoid having to always upload an image when updating other fields.
 
         if ($request->hasFile('image')) {
@@ -113,6 +123,7 @@ public function index(Request $request) //this handles search functionality
 
         $dragon->update($data);
 
+        //Redirect to the index page with a success message
         return redirect()->route('dragons.index')->with('success', 'Dragon updated successfully!');
     }
 

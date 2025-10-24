@@ -1,6 +1,9 @@
 @props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
 
 @php
+
+// Determine alignment classes based on the 'align' prop
+//based on the value of the "align" prop, different CSS classes are assigned to position the dropdown menu correctly.
 $alignmentClasses = match ($align) {
     'left' => 'ltr:origin-top-left rtl:origin-top-right start-0',
     'top' => 'origin-top',
@@ -13,11 +16,15 @@ $width = match ($width) {
 };
 @endphp
 
+
+ {{-- Dropdown component using Alpine.js for interactivity and tailwind css for styling --}}
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+     {{-- The dropdown menu, which appears when the trigger is clicked. --}}
     <div @click="open = ! open">
         {{ $trigger }}
     </div>
 
+   {{-- dropdown content panel. Uses transitions from Alpine.js for transition. --}}
     <div x-show="open"
             x-transition:enter="transition ease-out duration-200"
             x-transition:enter-start="opacity-0 scale-95"

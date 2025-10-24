@@ -11,6 +11,8 @@ class DragonSeeder extends Seeder{
     /**
      * Run the database seeds.
      */
+
+    // inserts initial dragon data into the dragons table for testing and development purposes.
     public function run(): void {
         $currentTimestamp = Carbon::now();
 

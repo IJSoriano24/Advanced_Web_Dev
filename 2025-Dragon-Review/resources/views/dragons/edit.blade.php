@@ -17,11 +17,11 @@
                     <h3 class="pt-4 font-semibold text-;g mb-4">Edit New Dragon:</h3>
 
 
-                    {{-- Using the DragonForm component for dragon creation --}}
+                    {{-- Using the DragonForm component for dragon creation to avoid redundancy --}}
                     <x-dragon-form
-                        :action="route('dragons.update', $dragon)"
-                        :method="'PUT'"
-                        :dragon="$dragon"
+                        :action="route('dragons.update', $dragon)" {{-- Form action URL for updating the existing dragon. --}}
+                        :method="'PUT'"                 {{-- HTTP method "PUT" for the form submission. --}}
+                        :dragon="$dragon"           {{-- Pass the existing dragon data to pre-fill the form. --}}
                         
                     />
 

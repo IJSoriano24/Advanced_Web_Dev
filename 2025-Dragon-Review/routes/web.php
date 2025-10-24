@@ -4,15 +4,19 @@ use App\Http\Controllers\DragonController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+//welcome page route
 Route::get('/', function () {
     return view('welcome');
 });
 
+//dashboard route with auth and verifieed users.
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//group routes that require authentication
 Route::middleware('auth')->group(function () {
+    //profile management routes(view, update and delete)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -20,8 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('dragons', DragonController::class);
 });
 
-//This route will call the show() method in the DragonController
+//This route will call the show() method in the DragonController. All routes are definded below for clarity.    
 
+//Dragon resource routes which map to the DragonController methods
     Route::get('/dragons', [DragonController::class, 'index'])->name('dragons.index');
     Route::get('/dragons/create', [DragonController::class, 'create'])->name('dragons.create');
     Route::get('/dragons/{dragon}', [DragonController::class, 'show'])->name('dragons.show');
@@ -31,5 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/dragons/{dragon}', [DragonController::class, 'update'])->name('dragons.update');
     Route::delete('/dragons/{dragon}', [DragonController::class, 'destroy'])->name('dragons.destroy');
 
-
+//default auth routes provided by Laravel Breeze
 require __DIR__.'/auth.php';
+

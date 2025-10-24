@@ -16,9 +16,11 @@
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">Add a New Dragon</h3>
 
+
+                     {{-- Include the dragon form component for creating a new dragon. --}}
                     <x-dragon-form
-                        :action="route('dragons.store')"
-                        :method="'POST'"
+                        :action="route('dragons.store')" {{-- Form action URL for storing the new dragon. --}}
+                        :method="'POST'"               {{-- HTTP method "POST" for the form submission. --}}
                     />
 
             </div>

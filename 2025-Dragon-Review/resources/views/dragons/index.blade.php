@@ -8,16 +8,19 @@
 
     </x-slot>
 
-    <x-alert-success>
+{{-- Success messages are diasplayed after interacting with the crud functions --}}
+    <x-alert-success>     
     {{ session('success') }}
 </x-alert-success>
 
+{{-- shows the current search term and results message if search was applied --}}
 @if(!empty($search))
     <p class="text-sm text-gray-600 mb-3">
         Showing results for: <strong>{{ $search }}</strong>
     </p>
 @endif
 
+{{-- user is informed when no dragons match the search query --}}
 @if($dragons->isEmpty())
     <p class="text-gray-500">No dragons found matching "{{ $search }}".</p>
 @endif
@@ -29,7 +32,8 @@
             <div class="bg-[#abd4b1] overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">List of Dragons</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> 
+                        {{-- Loop through each dragon and display using the DragonCard component --}}
                         @foreach($dragons as $dragon)
                        
                         <div class="bg-[#D9C9B4]  border p-4 rounded-lg shadow-md" >
