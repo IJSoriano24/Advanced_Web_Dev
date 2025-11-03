@@ -41,7 +41,7 @@ public function index(Request $request) //this handles search functionality
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage
      */
 
     // handles the form submission for creating a new dragon and creates a new dragon record in the database.
