@@ -26,7 +26,19 @@
             />
         </div>
 
-        {{-- displays a youtube video for the dragon based on the "video_id" --}}
+        {{-- dragon abilities --}}
+        {{-- <h4 class="font-semibold text-md mt-8">Abilities</h4>
+        @if($dragon -> abilities->isEmpty())
+            <p class="text-gray-600">No abilities yet.</p>
+        @else      
+            <ul class="mt-4 space-y-4">
+                @foreach($dragon->abilities as $ability)
+                    <li class="bg-gray-100 p-4 rounded lg">
+                        <p class="font-semibold">{{ $review->user->name}} (({ $ability->created_at->format('M d, Y')}))</p>
+                        <p>Ability: {{$ability->rating}} --}}
+        
+        
+            {{-- displays a youtube video for the dragon based on the "video_id" --}}
         <iframe 
     class="relative z-10 mx-auto block rounded-xl shadow-lg"
     width="560" 

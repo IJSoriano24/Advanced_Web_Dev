@@ -9,9 +9,14 @@ class Ability extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'description',
+    public function dragon()
+    {
+        return $this->belongsto(Dragon::class);
+    }
 
-    ];
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
 }

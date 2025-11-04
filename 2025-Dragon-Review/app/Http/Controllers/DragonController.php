@@ -85,6 +85,11 @@ public function index(Request $request) //this handles search functionality
     public function show(Dragon $dragon)
     {
         return view('dragons.show')->with('dragon', $dragon);
+                //load the ability with its associated abilities and the viking who made each review
+        $dragon->load('abilities.user');
+        return view('dragons.show', compact('dragon'));
+        //compact is shorthand for this
+        //return view ('dragons.show', ['dragon' => $dragon]);
     }
 
     /**

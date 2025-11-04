@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Abilities;
+use App\Models\Ability;
+use App\Models\Dragon;
 use Illuminate\Http\Request;
 
-class AbilitiesController extends Controller
+class AbilityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,15 +27,29 @@ class AbilitiesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Dragon $dragon)
     {
-        //
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string|max:1000',
+        ])
+
+        //create the review associated with the book and user
+        $dragon->abilities()->create([
+            'user_id' => auth()->id(),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'dragon_id' => $dragon->id
+        ]);
+
+        return redirect()->('dragons.show', $dragon)->with('success', 'Ability added successfully');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Abilities $abilities)
+    public function show(Ability $ability)
     {
         //
     }
@@ -42,7 +57,7 @@ class AbilitiesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Abilities $abilities)
+    public function edit(Ability $ability)
     {
         //
     }
@@ -50,7 +65,7 @@ class AbilitiesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Abilities $abilities)
+    public function update(Request $request, Ability $ability)
     {
         //
     }
@@ -58,7 +73,7 @@ class AbilitiesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Abilities $abilities)
+    public function destroy(Ability $ability)
     {
         //
     }

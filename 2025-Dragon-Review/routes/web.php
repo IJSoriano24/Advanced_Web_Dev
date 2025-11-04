@@ -30,11 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/dragons', [DragonController::class, 'index'])->name('dragons.index');
     Route::get('/dragons/create', [DragonController::class, 'create'])->name('dragons.create');
     Route::get('/dragons/{dragon}', [DragonController::class, 'show'])->name('dragons.show');
-    Route::post('/dragons', [DragonController::class, 'store'])->name('dragons.store');
+    // Route::post('/dragons', [DragonController::class, 'store'])->name('dragons.store');
     
     Route::get('/dragons/{dragon}/edit', [DragonController::class, 'edit'])->name('dragons.edit');
     Route::put('/dragons/{dragon}', [DragonController::class, 'update'])->name('dragons.update');
     Route::delete('/dragons/{dragon}', [DragonController::class, 'destroy'])->name('dragons.destroy');
+
+    Route::resource('abilities', AbilityController::class);
+
+    Route::post('dragons/{dragon}/abilities',[AbilityController::class, 'store'])->name('abilities.store');
 
 //default auth routes provided by Laravel Breeze
 require __DIR__.'/auth.php';

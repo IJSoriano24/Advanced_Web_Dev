@@ -17,4 +17,10 @@ class Dragon extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function abilities()
+    {
+        return $this->hasMany(Ability::class);
+    }
+
 }
