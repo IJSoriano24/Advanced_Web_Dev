@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DragonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AbilityController;
 use Illuminate\Support\Facades\Route;
 
 //welcome page route
@@ -22,23 +23,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('dragons', DragonController::class);
-});
 
-//This route will call the show() method in the DragonController. All routes are definded below for clarity.    
-
-//Dragon resource routes which map to the DragonController methods
-    Route::get('/dragons', [DragonController::class, 'index'])->name('dragons.index');
-    Route::get('/dragons/create', [DragonController::class, 'create'])->name('dragons.create');
-    Route::get('/dragons/{dragon}', [DragonController::class, 'show'])->name('dragons.show');
-    // Route::post('/dragons', [DragonController::class, 'store'])->name('dragons.store');
-    
-    Route::get('/dragons/{dragon}/edit', [DragonController::class, 'edit'])->name('dragons.edit');
-    Route::put('/dragons/{dragon}', [DragonController::class, 'update'])->name('dragons.update');
-    Route::delete('/dragons/{dragon}', [DragonController::class, 'destroy'])->name('dragons.destroy');
-
-    Route::resource('abilities', AbilityController::class);
+        Route::resource('abilities', AbilityController::class);
 
     Route::post('dragons/{dragon}/abilities',[AbilityController::class, 'store'])->name('abilities.store');
+});
+
+  
+
+//Dragon resource routes which map to the DragonController methods
+
+
+
 
 //default auth routes provided by Laravel Breeze
 require __DIR__.'/auth.php';

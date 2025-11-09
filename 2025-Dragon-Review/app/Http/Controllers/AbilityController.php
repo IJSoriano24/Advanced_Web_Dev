@@ -6,6 +6,7 @@ use App\Models\Ability;
 use App\Models\Dragon;
 use Illuminate\Http\Request;
 
+
 class AbilityController extends Controller
 {
     /**
@@ -30,19 +31,20 @@ class AbilityController extends Controller
     public function store(Request $request, Dragon $dragon)
     {
         $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string|max:1000',
-        ])
+            'name' => 'required|string|min:1|max:255',
+            'description' => 'nullable|string|max:1000',
+        ]);
 
-        //create the review associated with the book and user
+        //create the review associated with the dragon and user
         $dragon->abilities()->create([
+            
             'user_id' => auth()->id(),
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'dragon_id' => $dragon->id
+            
         ]);
 
-        return redirect()->('dragons.show', $dragon)->with('success', 'Ability added successfully');
+        return redirect()->route('dragons.show', $dragon)->with('success', 'Ability added successfully');
 
     }
 

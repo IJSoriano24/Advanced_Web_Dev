@@ -63,7 +63,7 @@ public function index(Request $request) //this handles search functionality
             $request->image->move(public_path('images/dragons'), $imageName);
         }
 
-        //create a book record in the database
+        //create a dragon record in the database
         Dragon::create([
             'type' => $request->type,
             'color' => $request->color, //fixed type from 'descriptn'

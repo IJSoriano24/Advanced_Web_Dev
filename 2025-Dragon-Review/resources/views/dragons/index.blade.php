@@ -36,38 +36,40 @@
                         {{-- Loop through each dragon and display using the DragonCard component --}}
                         @foreach($dragons as $dragon)
                        
-                        <div class="bg-[#D9C9B4]  border p-4 rounded-lg shadow-md" >
+                            <div class="bg-[#D9C9B4]  border p-4 rounded-lg shadow-md" >
                             
                             
 
-                        <a href="{{ route('dragons.show', $dragon) }}">
-                                <x-dragon-card
-                                    :type="$dragon->type"
-                                    :image="$dragon->image"
-                                />
-                            </a>
+                                <a href="{{ route('dragons.show', $dragon) }}">
+                                    <x-dragon-card
+                                        :type="$dragon->type"
+                                        :image="$dragon->image"
+                                    />
+                                </a>
+                                @if(auth()->user()->role === 'admin')
+                                    <!-- edit and delete buttons -->
+                                    <div class="mt-4 flex space-x-2">
+                                        {{--Edit Button route to dragons.edit and receives $dragon for editing  --}}
+                                        <a href="{{ route('dragons.edit', $dragon)}}" 
+                                            class="text-green-600 bg-green-100 font-bold py-2 px-4 rounded border border-transparent border-4 hover:border-green-600"> Edit
+                                        </a>    
 
-                            <!-- edit and delete buttons -->
-                            <div class="mt-4 flex space-x-2">
-                                {{--Edit Button route to dragons.edit and receives $dragon for editing  --}}
-                                <a href="{{ route('dragons.edit', $dragon)}}" 
-                                    class="text-green-600 bg-green-100 font-bold py-2 px-4 rounded border border-transparent border-4 hover:border-green-600"> Edit
-                                </a>    
-
-                                {{-- Delete Button (You need a form to send DELETE requests) --}}
-                                {{-- Delete Button route to dragons.destroy. --}}
-                                <form action="{{ route('dragons.destroy', $dragon)}}" method="POST" onsumbit="return confirm('Are you sure you want to delete this dragon?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-[#A8412B] bg-[#F9EDEB] font-bold py-2 px-4 rounded border-4 border-transparent hover:border-[#A8412B]"> Delete
-                                    </button>
-                                </form>
+                                        {{-- Delete Button (You need a form to send DELETE requests) --}}
+                                        {{-- Delete Button route to dragons.destroy. --}}
+                                        <form action="{{ route('dragons.destroy', $dragon)}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this dragon?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-[#A8412B] bg-[#F9EDEB] font-bold py-2 px-4 rounded border-4 border-transparent hover:border-[#A8412B]"> Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
 
-                        </div>
-
                         @endforeach
+                                    
                     </div>
+  
                 </div>
             </div>
         </div>
