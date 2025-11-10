@@ -16,7 +16,7 @@ return new class extends Migration
             //cascade here means if dragon is deleted so will the abilities
             $table->foreignID('dragon_id')->constrained()->onDelete('cascade');
             //cascade - if the user is deleted so are their abilities
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+           // $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('name')->nullable();
             $table->text('description')->nullable();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
     public function down(): void
     {
        
-        Schema::dropIfExists('abilities.show');
+        Schema::dropIfExists('abilities');
     }
 };

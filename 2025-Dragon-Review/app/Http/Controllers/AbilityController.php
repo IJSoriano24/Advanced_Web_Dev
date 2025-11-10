@@ -38,7 +38,7 @@ class AbilityController extends Controller
         //create the review associated with the dragon and user
         $dragon->abilities()->create([
             
-            'user_id' => auth()->id(),
+            // 'user_id' => auth()->id(),
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             
@@ -61,15 +61,32 @@ class AbilityController extends Controller
      */
     public function edit(Ability $ability)
     {
-        //
+        //check if user is the ownder or an admin
+        if (auth->user()->id !== $ability->user_id && auth()->user()->role !== 'admin') {
+            return redirect()->route('dragons.index')->with('error', 'Access denied.');
+        }
+
+        return view('abilities.edit', compact('ability'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Ability $ability)
     {
-        //
+        //check to ensure the user is authorised to update this content
+
+        //your validation code here
+
+        //you must consider what attributes can be altered in your table
+        //only rating and comment cam be altered, not dragon_id or user_id
+        $ability->update($request->only(['name', 'description']));
+
+        //once its updated its updated in the db, redirect somewhere that makes sense for your application
+        return redirect()->route('dragons.show', $ability->dragon_id)
+                        ->with('success', 'ability updated successfully.');
+                        
     }
 
     /**

@@ -19,11 +19,11 @@
                     <x-nav-link :href="route('dragons.index')" :active="request()->routeIs('dragons.index')">
                         {{ __('View All Dragons') }}
                     </x-nav-link>
- @if(auth()->user()->role === 'admin')
-                    <x-nav-link :href="route('dragons.create')" :active="request()->routeIs('dragons.create')">
-                        {{ __('Create a Dragon') }}
-                    </x-nav-link>
-  @endif
+                    @if(auth()->user()->role === 'admin')
+                        <x-nav-link :href="route('dragons.create')" :active="request()->routeIs('dragons.create')">
+                            {{ __('Create a Dragon') }}
+                        </x-nav-link>
+                    @endif
                     <!-- visible only to admins -->
                     {{-- @if(auth()->user()->role === 'admin')
                         <x-nav-link :href="route('dragons.create')" :active="request()->routeIs('dragons.create')">

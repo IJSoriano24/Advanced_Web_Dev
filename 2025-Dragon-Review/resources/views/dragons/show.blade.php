@@ -37,9 +37,27 @@
             <ul class="mt-4 space-y-4">
                 @foreach($dragon->abilities as $ability)
                     <li class="bg-gray-100 p-4 rounded-lg">
-                        <p class="font-semibold">{{ $ability->user->name}} ({ $ability->created_at->format('M d, Y')})</p>
+                        <p class="font-semibold">{{ $ability->user?->name ?? 'Anonymous'}}</p>
                         <p>Ability: {{$ability->name}}</p>
                         <p>{{$ability->description}}</p>
+
+                        {{-- if the logged in user wrote the review or he logged in user is in an admin they can edit and delete --}}
+                        {{-- you need to consider your application to determine who has permissions to edit/delete content --}}
+                        @auth
+                        @if (auth()->user()->role === 'admin' || ($ability->user && $ability->user->is (auth()->user())))
+                            <a href="{{ route('abilities.edit', $ability) }}" class= "bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+                                {{__('Edit Ability')}}
+                            </a>
+                            <form method="POST" action="{{route('abilities.destroy', $ability) }}">
+                                @csrf
+                                @method('delete')
+                                <x-danger-button :href="route('abilities.destroy', $ability)"
+                                                        onclick="event.preventDefault(); this.closet('form').submit();">
+                                    {{__('Delete Review')}}
+                                    </x-danger-button>
+                            </form>
+                        @endif
+                        @endauth
                     </li>
                 @endforeach
             </ul>
