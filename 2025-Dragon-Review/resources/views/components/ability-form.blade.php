@@ -24,20 +24,22 @@
     </div>
 
 
-    <!--Personality-->  
+    <!--Description-->  
     <div class="mb-4">
         <label for="description" class="block text-sm text-gray-700">Description</label>
         <input
             type="text"
             name="description"
             id="description"
-            value="{{ old('description', $dragon->description??'')}}"
+            value="{{ old('description', $ability->description??'')}}"
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
             @error('description')
                 <p class="text-sm text-red-600">{{$message}}</p>
             @enderror
     </div>
+
+<input type="hidden" name="dragon_id" value="{{$dragon->id}}">
 
     <!--Update button-->  
     <div>

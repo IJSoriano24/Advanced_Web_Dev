@@ -24,12 +24,10 @@
                             {{ __('Create a Dragon') }}
                         </x-nav-link>
                     @endif
-                    <!-- visible only to admins -->
-                    {{-- @if(auth()->user()->role === 'admin')
-                        <x-nav-link :href="route('dragons.create')" :active="request()->routeIs('dragons.create')">
-                        
+
+                        <x-nav-link :href="route('abilities.create')" :active="request()->routeIs('abilities.create')">
+                            {{ __('Create a Ability') }}
                         </x-nav-link>
-                    @endif --}}
 
                 </div>
             </div>

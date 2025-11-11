@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('dragons', DragonController::class);
 
-        Route::resource('abilities', AbilityController::class);
+    Route::resource('abilities', AbilityController::class);
 
     Route::post('dragons/{dragon}/abilities',[AbilityController::class, 'store'])->name('abilities.store');
 });

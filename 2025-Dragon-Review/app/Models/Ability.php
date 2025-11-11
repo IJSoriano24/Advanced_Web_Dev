@@ -12,6 +12,7 @@ class Ability extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'dragon_id',
         'name',
         'description',
         // 'user_id',

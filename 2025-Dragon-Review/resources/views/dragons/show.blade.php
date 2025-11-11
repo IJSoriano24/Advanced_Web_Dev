@@ -18,8 +18,7 @@
     <div class="relative bg-white/60 backdrop-blur max-w-7xl mx-auto  lg:px-8 rounded-lg shadow-sm  py-5">
 
 
-
-        <div class="p-6 text-gray-900">
+        <div class="p-6 text-gray-900 ">
             <h3 class="font-semibold text-lg mb-4">Dragon Details</h3>
             <x-dragon-details
                 :type="$dragon->type"
@@ -27,7 +26,22 @@
                 :personality="$dragon->personality"
                 :image="$dragon->image"
             />
-        </div>
+        
+        <iframe 
+            class="relative z-10 mx-auto block rounded-xl shadow-lg"
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/{{$dragon->video_id}}"
+            title="{{$dragon->type}}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+        
+    </div>
+
+
+
 
         {{-- dragon abilities --}}
         <h4 class="font-semibold text-md mt-8">Abilities</h4>
@@ -40,6 +54,7 @@
                         <p class="font-semibold">{{ $ability->user?->name ?? 'Anonymous'}}</p>
                         <p>Ability: {{$ability->name}}</p>
                         <p>{{$ability->description}}</p>
+
 
                         {{-- if the logged in user wrote the review or he logged in user is in an admin they can edit and delete --}}
                         {{-- you need to consider your application to determine who has permissions to edit/delete content --}}
@@ -63,12 +78,16 @@
             </ul>
         @endif
 
+
+
         {{-- add a new ability --}}
         @if(auth()->user()->role === 'admin')
+
             <h4 class="font-semibold text-md mt-8">Add New Ability</h4>
             <form action="{{ route('abilities.store', $dragon) }}" method="POST" class="mt-4">
                 @csrf
 
+                <input type="hidden" name="dragon_id" value="{{$dragon->id}}">
             <div class="mb-4">
                     <label for="description" class="block font-medium text-sm text-gray-700">Ability Name:</label>
                     <textarea name="description" id="description" rows="3" class="mt-1 block w-full" placeholder="Write the name here..."></textarea>
@@ -85,17 +104,8 @@
             </form>
          @endif 
     </div>
-            {{-- displays a youtube video for the dragon based on the "video_id" --}}
-        <iframe 
-            class="relative z-10 mx-auto block rounded-xl shadow-lg"
-            width="560" 
-            height="315" 
-            src="https://www.youtube.com/embed/{{$dragon->video_id}}"
-            title="{{$dragon->type}}"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
+           
+
     </div>
 
 
