@@ -68,8 +68,8 @@
                                 @method('delete')
                                 <x-danger-button :href="route('abilities.destroy', $ability)"
                                                         onclick="event.preventDefault(); this.closet('form').submit();">
-                                    {{__('Delete Review')}}
-                                    </x-danger-button>
+                                    {{__('Delete Ability')}}
+                                </x-danger-button>
                             </form>
                         @endif
                         @endauth
@@ -84,7 +84,7 @@
         @if(auth()->user()->role === 'admin')
 
             <h4 class="font-semibold text-md mt-8">Add New Ability</h4>
-            <form action="{{ route('abilities.store', $dragon) }}" method="POST" class="mt-4">
+            <form action="{{ route('dragons.abilities.store', $dragon) }}" method="POST" class="mt-4">
                 @csrf
 
                 <input type="hidden" name="dragon_id" value="{{$dragon->id}}">

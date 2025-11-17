@@ -35,25 +35,25 @@ public function create(Dragon $dragon)
      */
     public function store(Request $request, Dragon $dragon)
     {
-  
+//   dd($request);
         $request->validate([
-            'dragon_id'=> 'required',
+            // 'dragon_id'=> 'required',
             'name' => 'required|string|min:1|max:255',
             'description' => 'nullable|string|max:1000',
         ]);
 
      
         //create the review associated with the dragon and user
-        $dragon->abilities()->create([
-            
+        //   $dragon->abilities()->create([
+        Ability::create([
             // 'user_id' => auth()->id(),
-            'dragon_id'=> 2,
-            // 'dragon_id'=> $request->input('dragon_id'),
+            //  'dragon_id'=> '2',
+           'dragon_id'=> $request->input('dragon_id'),
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             
         ]);
-  dd($request);
+//   dd($request);
         return redirect()->route('dragons.show', $dragon)->with('success', 'Ability added successfully');
 
     }

@@ -24,9 +24,20 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('dragons', DragonController::class);
 
-    Route::resource('abilities', AbilityController::class);
+    Route::resource('dragons.abilities', AbilityController::class)
+    ->only(['create', 'store']);
 
-    Route::post('dragons/{dragon}/abilities',[AbilityController::class, 'store'])->name('abilities.store');
+    Route::get('/abilities', [AbilityController::class, 'index'])->name('abilities.index');
+Route::get('/abilities/{ability}/edit', [AbilityController::class, 'edit'])->name('abilities.edit');
+Route::put('/abilities/{ability}', [AbilityController::class, 'update'])->name('abilities.update');
+Route::delete('/abilities/{ability}', [AbilityController::class, 'destroy'])->name('abilities.destroy');
+
+
+
+//     // Route::post('dragons/{dragon}/abilities',[AbilityController::class, 'store'])->name('abilities.store');
+// Route::resource('abilities', AbilityController::class)->except(['create','store']);
+
+    
 });
 
   
