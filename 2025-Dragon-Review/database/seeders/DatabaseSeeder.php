@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DragonSeeder::class);
         $this->call(AbilitySeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(VikingSeeder::class);
 
         // User::factory()->create([
         //     'name' => 'Test User',

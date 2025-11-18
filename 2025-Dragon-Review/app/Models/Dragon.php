@@ -23,4 +23,9 @@ class Dragon extends Model
         return $this->hasMany(Ability::class);
     }
 
+        public function vikings()
+    {
+        return $this->belongsToMany(Viking::class);
+    }
+
 }

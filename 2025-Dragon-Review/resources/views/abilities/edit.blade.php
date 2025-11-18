@@ -16,13 +16,13 @@
 
                     <h3 class="pt-4 font-semibold text-;g mb-4">Edit Ability:</h3>
 
-
+{{-- <p>{{$ability}}</p> --}}
                     {{-- Using the DragonForm component for dragon creation to avoid redundancy --}}
                     <x-ability-form
                         :action="route('abilities.update', $ability)" {{-- Form action URL for updating the existing dragon. --}}
                         :method="'PUT'"                 {{-- HTTP method "PUT" for the form submission. --}}
-                        :dragon="$ability"           {{-- Pass the existing dragon data to pre-fill the form. --}}
-                        
+                        :ability="$ability"           {{-- Pass the existing dragon data to pre-fill the form. --}}
+                        :dragon="$ability->dragon"
                     />
 
                 </div>

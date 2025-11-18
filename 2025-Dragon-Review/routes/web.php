@@ -3,6 +3,7 @@
 use App\Http\Controllers\DragonController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AbilityController;
+use App\Http\Controllers\VikingController;
 use Illuminate\Support\Facades\Route;
 
 //welcome page route
@@ -24,13 +25,15 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('dragons', DragonController::class);
 
+    Route::resource('vikings', VikingController::class)->middleware('auth');
+
     Route::resource('dragons.abilities', AbilityController::class)
     ->only(['create', 'store']);
 
     Route::get('/abilities', [AbilityController::class, 'index'])->name('abilities.index');
-Route::get('/abilities/{ability}/edit', [AbilityController::class, 'edit'])->name('abilities.edit');
-Route::put('/abilities/{ability}', [AbilityController::class, 'update'])->name('abilities.update');
-Route::delete('/abilities/{ability}', [AbilityController::class, 'destroy'])->name('abilities.destroy');
+    Route::get('/abilities/{ability}/edit', [AbilityController::class, 'edit'])->name('abilities.edit');
+    Route::put('/abilities/{ability}', [AbilityController::class, 'update'])->name('abilities.update');
+    Route::delete('/abilities/{ability}', [AbilityController::class, 'destroy'])->name('abilities.destroy');
 
 
 

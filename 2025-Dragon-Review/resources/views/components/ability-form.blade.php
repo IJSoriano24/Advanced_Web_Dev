@@ -23,6 +23,7 @@
             @enderror
     </div>
 
+    <p>{{$ability->name}}</p>
 
     <!--Description-->  
     <div class="mb-4">

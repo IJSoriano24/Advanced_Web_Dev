@@ -69,8 +69,11 @@ public function create(Dragon $dragon)
     /**
      * Show the form for editing the specified resource.
      */
+
+    
     public function edit(Ability $ability)
     {
+   
         //check if user is the ownder or an admin
         if (auth()->user()->id !== $ability->user_id && auth()->user()->role !== 'admin') {
             return redirect()->route('dragons.index')->with('error', 'Access denied.');

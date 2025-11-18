@@ -36,7 +36,7 @@
                         {{-- Loop through each dragon and display using the DragonCard component --}}
                         @foreach($dragons as $dragon)
                        
-                            <div class="bg-[#D9C9B4]  border p-4 rounded-lg shadow-md" >
+                            <div class="bg-[#D9C9B4]  border p-4 rounded-lg shadow-md">
                             
                             
 

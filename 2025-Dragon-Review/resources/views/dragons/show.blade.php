@@ -60,13 +60,14 @@
                         {{-- you need to consider your application to determine who has permissions to edit/delete content --}}
                         @auth
                         @if (auth()->user()->role === 'admin' || ($ability->user && $ability->user->is (auth()->user())))
-                            <a href="{{ route('abilities.edit', $ability) }}" class= "bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+                            <a href="{{ route('abilities.edit', $ability) }}" class= "text-green-600 bg-green-100 font-bold py-2 px-4 rounded border border-transparent border-4 hover:border-green-600">
                                 {{__('Edit Ability')}}
                             </a>
-                            <form method="POST" action="{{route('abilities.destroy', $ability) }}">
+                            
+                            <form method="POST" action="{{route('abilities.destroy', $ability) }}" class ="">
                                 @csrf
                                 @method('delete')
-                                <x-danger-button :href="route('abilities.destroy', $ability)"
+                                <x-danger-button :href="route('abilities.destroy', $ability)" 
                                                         onclick="event.preventDefault(); this.closet('form').submit();">
                                     {{__('Delete Ability')}}
                                 </x-danger-button>
