@@ -28,7 +28,7 @@
             />
         
         <iframe 
-            class="relative z-10 mx-auto block rounded-xl shadow-lg"
+            class="relative z-10 mx-auto block rounded-xl shadow-lg mt-6"
             width="560" 
             height="315" 
             src="https://www.youtube.com/embed/{{$dragon->video_id}}"
@@ -64,14 +64,14 @@
                                 {{__('Edit Ability')}}
                             </a>
                             
-                            <form method="POST" action="{{route('abilities.destroy', $ability) }}" class ="">
-                                @csrf
-                                @method('delete')
-                                <x-danger-button :href="route('abilities.destroy', $ability)" 
-                                                        onclick="event.preventDefault(); this.closet('form').submit();">
-                                    {{__('Delete Ability')}}
-                                </x-danger-button>
-                            </form>
+                            <form action="{{ route('abilities.destroy', $ability->id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this ability?');">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="text-red-500 hover:underline">
+                                  Delete
+                              </button>
+                          </form>
                         @endif
                         @endauth
                     </li>
@@ -102,6 +102,8 @@
             <button type="submit" class="bg-blue-600 text-white hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Submit Ability
             </button>
+
+
             </form>
          @endif 
     </div>

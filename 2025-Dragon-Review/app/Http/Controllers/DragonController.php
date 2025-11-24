@@ -18,7 +18,7 @@ public function index(Request $request) //this handles search functionality
     //Fetch dragons from the database, optionally filtering by search query
     $dragons = Dragon::query()
         ->when($search, function ($query, $search) {
-            $query->where('type', 'like', "%{$search}%") //reads the query parameter 'search' from the request. Adds a SQL WHERE clause to filter dragons by type or color.
+            $query->where('name', 'like', "%{$search}%") //reads the query parameter 'search' from the request. Adds a SQL WHERE clause to filter dragons by type or color.
                   ->orWhere('color', 'like', "%{$search}%");
         })
         ->get();

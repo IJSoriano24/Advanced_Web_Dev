@@ -107,6 +107,8 @@ public function create(Dragon $dragon)
      */
     public function destroy(Ability $ability)
     {
-        //
+        $ability->delete();
+
+        return redirect()->route('dragons.index')->with('success', 'Ability deleted successfully!');
     }
 }

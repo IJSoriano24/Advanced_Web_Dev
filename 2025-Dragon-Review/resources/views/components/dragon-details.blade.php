@@ -4,7 +4,7 @@
 
  {{-- back button --}}
 <a href="{{ route('dragons.index') }}"
-class="text-[#A8412B] bg-[#5B3A29] font-bold py-2 px-4 rounded border-4 border-transparent hover:border-[#4d3022]"
+class="text-[#A8412B] bg-[#5B3A29] font-bold py-2 px-4 rounded border-4 border-transparent hover:border-[#4d3022] "
     >Back</a>
 
 

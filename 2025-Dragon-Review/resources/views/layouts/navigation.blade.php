@@ -25,11 +25,9 @@
                         </x-nav-link>
                     @endif
 
-                    {{-- @if(auth()->user()->role === 'admin')
-                        <x-nav-link :href="route('dragons.abilities.create')" :active="request()->routeIs('dragons.abilities.create')">
-                            {{ __('Create a Ability') }}
-                        </x-nav-link>
-                    @endif --}}
+                    <x-nav-link :href="route('vikings.index')" :active="request()->routeIs('View all Vikings')">
+                        {{ __('View all Vikings') }}
+                    </x-nav-link>
                 </div>
             </div>
 
