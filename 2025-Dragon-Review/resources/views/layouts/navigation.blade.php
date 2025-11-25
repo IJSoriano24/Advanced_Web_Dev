@@ -28,6 +28,13 @@
                     <x-nav-link :href="route('vikings.index')" :active="request()->routeIs('View all Vikings')">
                         {{ __('View all Vikings') }}
                     </x-nav-link>
+
+                    @if(auth()->user()->role === 'admin')
+                    <x-nav-link :href="route('vikings.create')" :active="request()->routeIs('vikings.create')">
+                        {{ __('Create a Viking') }}
+                    </x-nav-link>
+                @endif
+
                 </div>
             </div>
 

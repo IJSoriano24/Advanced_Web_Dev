@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Viking;
+use App\Models\Dragon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VikingController extends Controller
 {
@@ -19,7 +21,7 @@ class VikingController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        //Fetch dragons from the database, optionally filtering by search query
+        //Fetch vikings from the database, optionally filtering by search query
         $vikings = Viking::query()
             ->when($search, function ($query, $search) {
                 $query->where('name', 'like', "%{$search}%"); //reads the query parameter 'search' from the request. Adds a SQL WHERE clause to filter dragons by type or color.
@@ -35,7 +37,8 @@ class VikingController extends Controller
      */
     public function create()
     {
-        return view('vikings.create');
+        $dragons = \App\Models\Dragon::all(); // Fetch all dragons for the dropdown
+        return view('vikings.create', compact('dragons'));
     }
 
     /**
@@ -48,7 +51,8 @@ class VikingController extends Controller
             'name' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'bio' => 'required|string',
-
+            'dragons' => 'nullable|array', // Expect an array of IDs
+            'dragons.*' => 'exists:dragons,id', // Ensure each ID exists in DB
             
         ]);
 
@@ -59,14 +63,19 @@ class VikingController extends Controller
             $request->image->move(public_path('images/vikings'), $imageName);
         }
 
-        //create a dragon record in the database
-        Viking::create([
+ 
+
+        $viking = Viking::create([
             'name' => $request->name,
-            'image' => $imageName, //store the image URL in the DB
+            'image' => $imageName, 
             'bio'=> $request->bio,
-            'created_at' => now(),
-            'updated_at' => now()
+            // 'created_at' and 'updated_at' are handled automatically by Laravel, you don't need to add them manually here
         ]);
+
+        // Attach the selected Dragons (This populates the dragon_viking table)
+        if ($request->has('dragons')) {
+        $viking->dragons()->attach($request->dragons);
+        }   
 
         //Redirect to the index page with a success message
         return to_route('vikings.index')->with('success', 'Viking created successfully!');
@@ -77,11 +86,11 @@ class VikingController extends Controller
      */
     public function show(Viking $viking)
     {
-        return view('vikings.show')->with('viking', $viking);
+        // return view('vikings.show')->with('viking', $viking);
                 //load the ability with its associated abilities and the viking who made each review
-        $viking->load('vikings.user');
+        $viking->load('dragons');
         return view('vikings.show', compact('viking'));
-        //compact is shorthand for this
+       
         //return view ('dragons.show', ['dragon' => $dragon]);
     }
 
@@ -90,6 +99,7 @@ class VikingController extends Controller
      */
     public function edit(Viking $viking)
     {
+        $dragons = Dragon::all();
         return view('vikings.edit', compact('viking'));
     }
 

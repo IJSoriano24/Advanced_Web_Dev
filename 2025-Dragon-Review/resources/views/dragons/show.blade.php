@@ -42,6 +42,28 @@
 
 
 
+{{-- vikings --}}
+<div class="mt-8 border-t pt-4">
+    <h3 class="text-2xl font-bold mb-4">Vikings Assigned to this Dragon</h3>
+
+    @if($dragon->vikings->isNotEmpty())
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            @foreach($dragon->vikings as $viking)
+                <div class="bg-white p-4 rounded shadow flex items-center space-x-4">
+                    <img src="{{ asset('images/vikings/' . $viking->image) }}" 
+                         alt="{{ $viking->name }}" 
+                         class="w-12 h-12 rounded-full object-cover">
+                    
+                    <a href="{{ route('vikings.show', $viking) }}" class="text-blue-600 hover:underline font-bold">
+                        {{ $viking->name }}
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    @else
+        <p class="text-gray-500 italic">No Vikings have been assigned to this dragon yet.</p>
+    @endif
+</div>
 
         {{-- dragon abilities --}}
         <h4 class="font-semibold text-md mt-8">Abilities</h4>
