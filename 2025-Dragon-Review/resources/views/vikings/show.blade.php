@@ -35,7 +35,7 @@
                                 {{ __('Edit Viking') }}
                             </a>
                         
-                            {{-- Delete Button (Fixed: Added the form tag back) --}}
+                            {{-- Delete Button --}}
                             <form action="{{ route('vikings.destroy', $viking) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this viking?');">
                                 @csrf
                                 @method('DELETE')

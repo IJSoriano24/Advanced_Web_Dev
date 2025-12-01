@@ -56,7 +56,7 @@ class VikingSeeder extends Seeder
                 'updated_at' => $currentTimestamp,
             ]);
 
-            // Attach matching dragon by name (must exist in DragonSeeder)
+            // Attach Dragons to Vikings based on predefined relationships         
             $dragonName = match ($createdViking->name) {
                 'Hiccup Horrendous Haddock III' => 'Night Fury',
                 'Astrid Hofferson'             => 'Deadly Nadder',

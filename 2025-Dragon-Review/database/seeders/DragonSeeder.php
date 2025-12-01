@@ -72,7 +72,7 @@ class DragonSeeder extends Seeder
             // Create dragon
             $dragon = Dragon::create($dragonData);
 
-            // Attach 2 random vikings (many-to-many)
+           
             $vikingIds = Viking::inRandomOrder()->take(2)->pluck('id');
 
             $dragon->vikings()->attach($vikingIds);

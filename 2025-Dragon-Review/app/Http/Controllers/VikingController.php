@@ -9,14 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class VikingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index(Request $request)
-    // {
-    //     $vikings = Viking::all();
-    //     return view('vikings.index', compact('vikings'));
-    // }
+
 
     public function index(Request $request)
     {
@@ -69,7 +62,7 @@ class VikingController extends Controller
             'name' => $request->name,
             'image' => $imageName, 
             'bio'=> $request->bio,
-            // 'created_at' and 'updated_at' are handled automatically by Laravel, you don't need to add them manually here
+           
         ]);
 
         // Attach the selected Dragons (This populates the dragon_viking table)
@@ -91,7 +84,6 @@ class VikingController extends Controller
         $viking->load('dragons');
         return view('vikings.show', compact('viking'));
        
-        //return view ('dragons.show', ['dragon' => $dragon]);
     }
 
     /**
@@ -110,7 +102,7 @@ class VikingController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'bio' => 'required|string',
         ]);
 
@@ -119,7 +111,7 @@ class VikingController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images/dragons'), $imageName);
+            $request->image->move(public_path('images/vikings'), $imageName);
             $data['image'] = $imageName;
         }
 

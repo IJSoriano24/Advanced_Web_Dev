@@ -37,8 +37,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-//     // Route::post('dragons/{dragon}/abilities',[AbilityController::class, 'store'])->name('abilities.store');
-// Route::resource('abilities', AbilityController::class)->except(['create','store']);
 
     
 });

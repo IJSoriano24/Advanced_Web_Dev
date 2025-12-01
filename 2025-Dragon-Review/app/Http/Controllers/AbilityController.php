@@ -43,11 +43,10 @@ public function create(Dragon $dragon)
         ]);
 
      
-        //create the review associated with the dragon and user
+        //create the ability associated with the dragon and user
         //   $dragon->abilities()->create([
         Ability::create([
-            // 'user_id' => auth()->id(),
-            //  'dragon_id'=> '2',
+
            'dragon_id'=> $request->input('dragon_id'),
             'name' => $request->input('name'),
             'description' => $request->input('description'),
@@ -88,12 +87,7 @@ public function create(Dragon $dragon)
      */
     public function update(Request $request, Ability $ability)
     {
-        //check to ensure the user is authorised to update this content
 
-        //your validation code here
-
-        //you must consider what attributes can be altered in your table
-        //only rating and comment cam be altered, not dragon_id or user_id
         $ability->update($request->only(['name', 'description']));
 
         //once its updated its updated in the db, redirect somewhere that makes sense for your application
