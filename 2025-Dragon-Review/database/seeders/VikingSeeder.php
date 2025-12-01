@@ -16,10 +16,9 @@ class VikingSeeder extends Seeder
     public function run(): void
     {
         $currentTimestamp = Carbon::now();
+         // Get the current timestamp for created_at and updated_at fields
 
-        // -----------------------------
-        // VIKINGS
-        // -----------------------------
+ // Define the Vikings to seed
         $vikings = [
             [
                 'image' => 'hiccup.png',
@@ -49,9 +48,10 @@ class VikingSeeder extends Seeder
         ];
 
         // Insert Vikings
+        // Create the Viking record in the database
         foreach ($vikings as $vikingData) {
             $createdViking = Viking::create([
-                ...$vikingData,
+                ...$vikingData, // Spread operator inserts name, image, bio
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp,
             ]);
@@ -66,8 +66,15 @@ class VikingSeeder extends Seeder
                 default                        => null
             };
 
+            
+            // Attach the dragon if it exists in the dragons table
+
             if ($dragonName) {
+
+                // Find dragon by type
                 $dragon = Dragon::where('type', $dragonName)->first();
+
+                 // Many-to-many pivot table attach
                 if ($dragon) {
                     $createdViking->dragons()->attach($dragon->id);
                 }
