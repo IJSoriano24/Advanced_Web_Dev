@@ -21,7 +21,8 @@
                     <x-viking-form
                         :action="route('vikings.store')" {{-- Form action URL for storing the new viking. --}}
                         :method="'POST'"               {{-- HTTP method "POST" for the form submission. --}}
-                        :dragons="$dragons"
+                        :dragons="$dragons"          {{-- Pass the list of dragons for the multi-select field. --}}
+                                                    {{-- No viking prop is passed, so $viking inside the component is null --}}
                     />
 
             </div>

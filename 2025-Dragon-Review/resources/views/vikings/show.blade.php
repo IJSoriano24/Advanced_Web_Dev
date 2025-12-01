@@ -25,7 +25,7 @@
                     :bio="$viking->bio"
                 />
                 
-                {{-- Edit and Delete Buttons --}}
+                {{-- Edit and Delete Buttons  (only for authorized users)--}}
                 @auth
                     @if (auth()->user()->role === 'admin' || ($viking->user && $viking->user->is(auth()->user())))
                         

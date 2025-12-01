@@ -10,122 +10,129 @@ use Illuminate\Support\Facades\Storage;
 class VikingController extends Controller
 {
 
-
     public function index(Request $request)
     {
+        // Retrieve the search query from the request
         $search = $request->input('search');
-        //Fetch vikings from the database, optionally filtering by search query
+
+        // Fetch vikings, applying search filtering if needed
         $vikings = Viking::query()
             ->when($search, function ($query, $search) {
-                $query->where('name', 'like', "%{$search}%"); //reads the query parameter 'search' from the request. Adds a SQL WHERE clause to filter dragons by type or color.
-                     
+                // If a search term is provided, filter vikings by name only
+                $query->where('name', 'like', "%{$search}%");
             })
-            ->get();
-            //retrieves the filtered list of dragons from the database.
+            ->get(); // Retrieve results
+
+        // Return view with vikings and the search input value
         return view('vikings.index', compact('vikings', 'search'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new viking.
      */
     public function create()
     {
-        $dragons = \App\Models\Dragon::all(); // Fetch all dragons for the dropdown
+        // Fetch all dragons so user can select which dragons this viking is linked to
+        $dragons = Dragon::all();
+
         return view('vikings.create', compact('dragons'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created viking in the database.
      */
     public function store(Request $request)
     {
-        //Validate input
+        // Validate incoming request
         $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'bio' => 'required|string',
-            'dragons' => 'nullable|array', // Expect an array of IDs
-            'dragons.*' => 'exists:dragons,id', // Ensure each ID exists in DB
-            
+            'name'    => 'required',
+            'image'   => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'bio'     => 'required|string',
+            'dragons' => 'nullable|array',           // Expecting array of dragon IDs
+            'dragons.*' => 'exists:dragons,id',     // Validate each ID exists
         ]);
 
-        //Check if the image is uploaded and handles it
+        // Handle image upload if provided
         if ($request->hasFile('image')) {
+            // Create a unique filename using timestamp
+            $imageName = time() . '.' . $request->image->extension();
 
-            $imageName = time(). '.' .$request->image->extension();
+            // Move uploaded image to public folder
             $request->image->move(public_path('images/vikings'), $imageName);
         }
 
- 
-
+        // Create new Viking record
         $viking = Viking::create([
-            'name' => $request->name,
-            'image' => $imageName, 
-            'bio'=> $request->bio,
-           
+            'name'  => $request->name,
+            'image' => $imageName, // Saved image filename
+            'bio'   => $request->bio,
         ]);
 
-        // Attach the selected Dragons (This populates the dragon_viking table)
+        // Attach selected dragons to the pivot table (dragon_viking)
         if ($request->has('dragons')) {
-        $viking->dragons()->attach($request->dragons);
-        }   
+            $viking->dragons()->attach($request->dragons);
+        }
 
-        //Redirect to the index page with a success message
+        // Redirect back to index with success message
         return to_route('vikings.index')->with('success', 'Viking created successfully!');
     }
 
     /**
-     * Display the specified resource.
+     * Display a single viking and its associated dragons.
      */
     public function show(Viking $viking)
     {
-        // return view('vikings.show')->with('viking', $viking);
-                //load the ability with its associated abilities and the viking who made each review
+     
         $viking->load('dragons');
+
         return view('vikings.show', compact('viking'));
-       
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing an existing viking.
      */
     public function edit(Viking $viking)
     {
+        // Fetch dragons in case the edit form includes dragon selection
         $dragons = Dragon::all();
+
         return view('vikings.edit', compact('viking'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update an existing viking.
      */
     public function update(Request $request, Viking $viking)
     {
+        // Validate incoming request
         $request->validate([
-            'name' => 'required',
+            'name'  => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'bio' => 'required|string',
+            'bio'   => 'required|string',
         ]);
 
-// prepare data for update. image is exluded to avoid overwriting it if no new image is uploaded.
-        $data = $request->only(['name', 'bio']); //image is not included here. when $dragon->update($data) is called, image will not be updated and is left as is. This is to avoid having to always upload an image when updating other fields.
+        //  update data without the image so you don't overwrite it if no new image is uploaded
+        $data = $request->only(['name', 'bio']);
 
+        // If a new image is uploaded, process and update it
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images/vikings'), $imageName);
+
             $data['image'] = $imageName;
         }
 
+        // Update the Viking record in database
         $viking->update($data);
 
-        //Redirect to the index page with a success message
+        // Redirect with success message
         return redirect()->route('vikings.index')->with('success', 'Viking updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Viking $viking)
     {
+        // Delete the Viking 
         $viking->delete();
 
         return redirect()->route('vikings.index')->with('success', 'Viking deleted successfully!');

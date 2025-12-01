@@ -39,7 +39,7 @@
                     allowfullscreen>
                 </iframe>
 
-                {{-- Vikings Section --}}
+                {{-- Vikings assigned to a dragon Section --}}
                 <div class="mt-8 border-t pt-4">
 
                     <h3 class="text-2xl font-bold mb-4">Vikings Assigned to this Dragon</h3>
@@ -58,7 +58,8 @@
                                     <img src="{{ asset('images/vikings/' . $viking->image) }}"
                                         alt="{{ $viking->name }}"
                                         class="w-12 h-12 rounded-full object-cover">
-
+                                    
+                                    {{-- viking name links to vinking show page --}}
                                     {{-- Uses the route helper to generate a URL to the viking's show page --}}
                                     <a href="{{ route('vikings.show', $viking) }}" class="text-blue-600 hover:underline font-bold">
                                         {{ $viking->name }}
@@ -69,7 +70,7 @@
 
                  </div>
 
-    {{-- Fallback: If the collection is empty (count is 0) --}}
+    {{-- else If the collection is empty (count is 0) --}}
     @else
         <p class="text-gray-500 italic">No Vikings have been assigned to this dragon yet.</p>
     @endif

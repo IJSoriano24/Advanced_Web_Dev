@@ -24,12 +24,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('dragons', DragonController::class);
+    // Provides standard RESTful routes such as: index, create, store, show, edit, update, destroy
+
 
     Route::resource('vikings', VikingController::class)->middleware('auth');
+    // Provides standard RESTful routes such as: index, create, store, show, edit, update, destroy
 
+    // Only allow creating and storing abilities for a specific dragon
     Route::resource('dragons.abilities', AbilityController::class)
     ->only(['create', 'store']);
 
+     // Ability Routes not tied to a dragon
     Route::get('/abilities', [AbilityController::class, 'index'])->name('abilities.index');
     Route::get('/abilities/{ability}/edit', [AbilityController::class, 'edit'])->name('abilities.edit');
     Route::put('/abilities/{ability}', [AbilityController::class, 'update'])->name('abilities.update');

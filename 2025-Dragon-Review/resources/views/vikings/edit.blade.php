@@ -22,7 +22,7 @@
                         :action="route('vikings.update', $viking)" {{-- Form action URL for updating the existing viking. --}}
                         :method="'PUT'"                 {{-- HTTP method "PUT" for the form submission. --}}
                         :viking="$viking"           {{-- Pass the existing viking data to pre-fill the form. --}}
-                        
+                                                    {{-- The component will use $viking to populate name, bio, image, and selected dragons --}}
                     />
 
                 </div>
