@@ -41,7 +41,7 @@ class VikingSeeder extends Seeder
                 'bio'   => 'Confident and boastful, Snotlout often tries to prove himself as a tough warrior. Despite his ego, he is a brave rider and shows loyalty to his friends when it truly matters.'
             ],
             [
-                'image' => 'twins.jpeg',
+                'image' => 'twins.jpg',
                 'name'  => 'Ruffnut & Tuffnut Thorston',
                 'bio'   => 'Chaotic twin siblings known for their reckless behavior and constant bickering. Despite their wild antics, they are skilled dragon riders and surprisingly effective in battle.'
             ],
